@@ -1,0 +1,124 @@
+//Author: Pranay Jagtap
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.instrument.IllegalClassFormatException;
+import java.util.Date;
+import java.util.List;
+import com.auxilii.msgparser.*;
+
+import com.auxilii.msgparser.attachment.*;
+import org.apache.poi.EncryptedDocumentException;
+//import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+//import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+
+public class TimeKeeper {
+  public static void main(String[] args) throws Exception{
+    MsgParser msgp = new MsgParser();
+    Message msg = msgp.parseMsg("C:/Users/admin/Desktop/message.msg");
+
+  //  Date time = msg.getCreationDate();
+    Date date = msg.getClientSubmitTime();
+    String fromEmail = msg.getFromEmail();
+    String fromName = msg.getFromName();
+    String subject = msg.getSubject();
+    String body = msg.getBodyText();
+
+ //   System.out.println(time);
+    System.out.println(date);
+    System.out.println("From :" + fromName + " <" + fromEmail + ">");
+    System.out.println("Subject :" + subject);
+    System.out.println("");
+    System.out.println(body);
+    System.out.println("");
+
+    List<Attachment> atts = msg.getAttachments();
+    for (Attachment att : atts) {
+      if (att instanceof FileAttachment) {
+        FileAttachment file = (FileAttachment) att;
+        System.out.println("Attachment : " + file.getFilename());
+        // you get the actual attachment with
+        // byte date[] = file.getData();
+      }
+    }
+    AppendToExcel();
+  }
+  static void AppendToExcel() throws Exception
+  {
+     InputStream inp = new FileInputStream("C:/Users/admin/Desktop/workbook.xlsx");
+
+      Workbook wb = WorkbookFactory.create(inp);
+      Sheet sheet =wb.getSheetAt(0);
+
+     // Row row = sheet.createRow((short) 2);
+      
+      sheet.shiftRows(2, sheet.getLastRowNum(), 1, true, true);
+      Row row1 = sheet.createRow(2);
+      row1.createCell(0).setCellValue("A");
+      row1.createCell(1).setCellValue("B");
+      row1.createCell(2).setCellValue("This is a string");
+      row1.createCell(3).setCellValue(true);
+
+      // Write the output to a file
+      FileOutputStream fileOut = new FileOutputStream("C:/Users/admin/Desktop/workbook.xlsx");
+      wb.write(fileOut);
+      fileOut.close();
+  }
+ /* {
+      String excelFilePath = "JavaBooks.xls";
+       
+      try {
+          FileInputStream inputStream = new FileInputStream(new File("C:/Users/admin/Desktop/workbook.xlsx"));
+          Workbook workbook = WorkbookFactory.create(inputStream);
+
+          Sheet sheet = workbook.getSheetAt(0);
+
+          Object[][] bookData = {
+                  {"The Passionate Programmer", "Chad Fowler", 16},
+                  {"Software Craftmanship", "Pete McBreen", 26},
+                  {"The Art of Agile Development", "James Shore", 32},
+                  {"Continuous Delivery", "Jez Humble", 41},
+          };
+
+          int rowCount = sheet.getLastRowNum();
+
+          for (Object[] aBook : bookData) {
+              Row row = sheet.createRow(++rowCount);
+
+              int columnCount = 0;
+               
+              Cell cell = row.createCell(columnCount);
+              cell.setCellValue(rowCount);
+               
+              for (Object field : aBook) {
+                  cell = row.createCell(++columnCount);
+                  if (field instanceof String) {
+                      cell.setCellValue((String) field);
+                  } else if (field instanceof Integer) {
+                      cell.setCellValue((Integer) field);
+                  }
+              }
+
+          }
+
+          inputStream.close();
+
+          FileOutputStream outputStream = new FileOutputStream("C:/Users/admin/Desktop/workbook.xlsx");
+          workbook.write(outputStream);
+          ((FileInputStream) workbook).close();
+          outputStream.close();
+           
+      } catch (IOException  ex) {
+          ex.printStackTrace();
+      }
+  }*/
+  
+}
