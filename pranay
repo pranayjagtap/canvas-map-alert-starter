@@ -2,9 +2,11 @@
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.instrument.IllegalClassFormatException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import com.auxilii.msgparser.*;
@@ -19,21 +21,66 @@ import org.apache.poi.ss.usermodel.Workbook;
 //import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-
 public class TimeKeeper {
+	
+	
+	public static String getFileName(String name){
+		String con="";
+	File dir = new File("C:/Users/admin/desktop");
+	File[] files = dir.listFiles(new FilenameFilter() {
+		
+	    public boolean accept(File dir, String name) {
+	    	System.out.println(name);
+	        return name.endsWith(".msg");
+	    }
+	});
+	System.out.println(con);
+	if(files[0].exists())
+	return files[0].toString();
+	else return "no";
+	}
   public static void main(String[] args) throws Exception{
-    MsgParser msgp = new MsgParser();
-    Message msg = msgp.parseMsg("C:/Users/admin/Desktop/message.msg");
+	  String country="";
+	for(int i=0;i<5;i++){
+    if(i==1){
+    	country="NBC";
+    }
+    else if(i==2){
+    	country="MOZ";
+    }
+    else if(i==3){
+    	country="Kenya";
+    }
+    else if(i==4){
+    	country="Egypt";
+    }
+    
+		
+		MsgParser msgp = new MsgParser();
+    
+    String msgname=getFileName("mess");
+    System.out.println("hi"+msgname);
+    if(msgname.contains("no")){
+    	continue ;
+    }
+    
+    Message msg = msgp.parseMsg(msgname);
 
-  //  Date time = msg.getCreationDate();
+   Date time = msg.getCreationDate();
     Date date = msg.getClientSubmitTime();
     String fromEmail = msg.getFromEmail();
     String fromName = msg.getFromName();
     String subject = msg.getSubject();
+    String[] subject1 =subject.split(" ");
+    System.out.println(subject1[0]);
+    
+    
     String body = msg.getBodyText();
 
- //   System.out.println(time);
+   System.out.println(time);
     System.out.println(date);
+    //16-Apr-17 5:34 PM
+    //Sun Apr 16 17:34:27 IST 2017
     System.out.println("From :" + fromName + " <" + fromEmail + ">");
     System.out.println("Subject :" + subject);
     System.out.println("");
@@ -49,22 +96,28 @@ public class TimeKeeper {
         // byte date[] = file.getData();
       }
     }
-    AppendToExcel();
+    AppendToExcel(subject1[0],date);
+	}
   }
-  static void AppendToExcel() throws Exception
+  static void AppendToExcel(String country,Date d) throws Exception
   {
      InputStream inp = new FileInputStream("C:/Users/admin/Desktop/workbook.xlsx");
 
       Workbook wb = WorkbookFactory.create(inp);
       Sheet sheet =wb.getSheetAt(0);
-
+      SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yy");
+      SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yy hh:mm:ss a");
+     String startDate=format1.format(d);
+     // format = new SimpleDateFormat("HH:mm:ss");
+      String dateString = format.format(d);
      // Row row = sheet.createRow((short) 2);
-      
-      sheet.shiftRows(2, sheet.getLastRowNum(), 1, true, true);
-      Row row1 = sheet.createRow(2);
-      row1.createCell(0).setCellValue("A");
-      row1.createCell(1).setCellValue("B");
-      row1.createCell(2).setCellValue("This is a string");
+    //  String date = d.toString();
+      System.out.println(sheet.getLastRowNum());
+    //  sheet.shiftRows(sheet.getLastRowNum()+2, sheet.getLastRowNum()+2, 1, true, true);
+      Row row1 = sheet.createRow(sheet.getLastRowNum()+1);
+      row1.createCell(0).setCellValue(country);
+      row1.createCell(1).setCellValue(startDate);
+      row1.createCell(2).setCellValue(dateString);
       row1.createCell(3).setCellValue(true);
 
       // Write the output to a file
