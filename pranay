@@ -43,7 +43,7 @@ public class TimeKeeper {
 	  String country="";
 	for(int i=0;i<5;i++){
     if(i==1){
-    	country="NBC";
+    	country="tan";
     }
     else if(i==2){
     	country="MOZ";
