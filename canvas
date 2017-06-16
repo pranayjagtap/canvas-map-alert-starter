@@ -1,0 +1,248 @@
+<html>
+<body>
+<head>
+<title>Barclays Africa ATM-Flex tracker</title>
+</head>
+
+<img id="map" src='africa_map.png' alt="map" width="0" height="0">
+<canvas id="myCanvas" width="600" height="400" style="border:10px solid black;">
+
+</canvas>
+
+
+
+<script>
+
+var five = app.methodReturningInt();
+var hello = app.methodReturningString();
+
+
+function getVal(){
+
+	var value=Packages.mdbpackage.d.getIt();
+	
+	return value;
+   // var empObj = new Packages.com.tdiinc.Employee("George")
+    //var ename = empObj.getempName();
+}
+var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+var img=document.getElementById("map");
+img.onload = function() {
+    ctx.drawImage(img, -400, -500);
+};
+
+
+var myVar = setInterval(function(){myFunc()},1000);
+
+function myFunc()
+{
+
+	var val=getVal();
+var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+
+ctx.fill();
+ctx.font = "30px Arial";
+ctx.strokeText("AFRICA",205,145);
+/*
+var  x=0;
+  var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+
+
+  
+
+var y=0;
+ ctx.beginPath();
+    ctx.moveTo(75+x,25+y);
+    ctx.quadraticCurveTo(25+x,25+y,25+x,62.5+y);
+    ctx.quadraticCurveTo(25+x,100+y,50+x,100+y);
+    ctx.quadraticCurveTo(50+x,120+y,30+x,125+y);
+    ctx.quadraticCurveTo(60+x,120+y,65+x,100+y);
+    ctx.quadraticCurveTo(125+x,100+y,125+x,62.5+y);
+    ctx.quadraticCurveTo(125+x,25+y,75+x,25+y);
+ ctx.closePath();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'black';    
+ctx.stroke();
+
+var i=Math.floor(Math.random()*1000);
+if(i>500)
+{
+ctx.fontStyle='red';
+ctx.fillStyle='red';
+}
+else
+{
+ctx.fillStyle='green';
+ctx.fontStyle='green';
+}
+ctx.fill();
+
+ctx.font = "15px Arial";
+ctx.strokeText("SECTOR I",35,60);
+ctx.strokeText(i,60,80); 
+ 
+ */
+ var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+
+
+//Uganda
+x=300;
+ y=-20;
+ ctx.beginPath();
+    ctx.moveTo(75+x,25+y);
+    ctx.quadraticCurveTo(25+x,25+y,25+x,62.5+y);
+    ctx.quadraticCurveTo(25+x,100+y,50+x,100+y);
+    ctx.quadraticCurveTo(50+x,120+y,30+x,125+y);
+    ctx.quadraticCurveTo(60+x,120+y,65+x,100+y);
+    ctx.quadraticCurveTo(125+x,100+y,125+x,62.5+y);
+    ctx.quadraticCurveTo(125+x,25+y,75+x,25+y);
+ ctx.closePath();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'black';    
+ctx.stroke();
+
+var i2=Math.floor(Math.random()*1000);
+if(i2>500)
+{
+ctx.fontStyle='red';
+ctx.fillStyle='red';
+}
+else
+{
+ctx.fillStyle='green';
+ctx.fontStyle='green';
+}
+ctx.fill();
+ctx.font = "15px Arial";
+ctx.strokeText("UGANDA",330,40);
+ctx.strokeText(i2,350,60); 
+
+
+//Kenya
+ var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+x=450;
+
+ 
+
+ y=-20;
+ ctx.beginPath();
+    ctx.moveTo(75+x,25+y);
+    ctx.quadraticCurveTo(25+x,25+y,25+x,62.5+y);
+    ctx.quadraticCurveTo(25+x,100+y,50+x,100+y);
+    ctx.quadraticCurveTo(50+x,120+y,30+x,125+y);
+    ctx.quadraticCurveTo(60+x,120+y,65+x,100+y);
+    ctx.quadraticCurveTo(125+x,100+y,125+x,62.5+y);
+    ctx.quadraticCurveTo(125+x,25+y,75+x,25+y);
+ ctx.closePath();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'black';    
+ctx.stroke();
+
+
+
+var i3=Math.floor(Math.random()*1000);
+if(i3>500)
+{
+ctx.fontStyle='red';
+ctx.fillStyle='red';
+}
+else
+{
+ctx.fillStyle='green';
+ctx.fontStyle='green';
+}
+ctx.fill();
+ctx.font = "15px Arial";
+ctx.strokeText("KENYA",480,40);
+ctx.font="20px";
+ctx.strokeText(i3,510,60);
+
+//MOZAMBIQUE
+var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+
+x=375;
+ y=230;
+ ctx.beginPath();
+    ctx.moveTo(75+x,25+y);
+    ctx.quadraticCurveTo(25+x,25+y,25+x,62.5+y);
+    ctx.quadraticCurveTo(25+x,100+y,50+x,100+y);
+    ctx.quadraticCurveTo(50+x,120+y,30+x,125+y);
+    ctx.quadraticCurveTo(60+x,120+y,65+x,100+y);
+    ctx.quadraticCurveTo(125+x,100+y,125+x,62.5+y);
+    ctx.quadraticCurveTo(125+x,25+y,75+x,25+y);
+ ctx.closePath();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'black';    
+ctx.stroke();
+
+
+var i4=Math.floor(Math.random()*1000);
+if(i4>500)
+{
+ctx.fontStyle='red';
+ctx.fillStyle='red';
+}
+else
+{
+ctx.fillStyle='green';
+ctx.fontStyle='green';
+}
+ctx.fill();
+ctx.font = "15px Arial";
+ctx.strokeText("MOZAMBIQUE",405,290);
+ctx.font="20px";
+ctx.strokeText(i4,415,310);
+
+//Tanzania
+var canvas = document.getElementById('myCanvas');
+      var ctx = canvas.getContext('2d');
+
+x=375;
+ y=80;
+ ctx.beginPath();
+    ctx.moveTo(75+x,25+y);
+    ctx.quadraticCurveTo(25+x,25+y,25+x,62.5+y);
+    ctx.quadraticCurveTo(25+x,100+y,50+x,100+y);
+    ctx.quadraticCurveTo(50+x,120+y,30+x,125+y);
+    ctx.quadraticCurveTo(60+x,120+y,65+x,100+y);
+    ctx.quadraticCurveTo(125+x,100+y,125+x,62.5+y);
+    ctx.quadraticCurveTo(125+x,25+y,75+x,25+y);
+ ctx.closePath();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'black';    
+ctx.stroke();
+
+
+var i5=Math.floor(Math.random()*1000);
+if(i5>500)
+{
+ctx.fontStyle='red';
+ctx.fillStyle='red';
+}
+else
+{
+ctx.fillStyle='green';
+ctx.fontStyle='green';
+}
+ctx.fill();
+ctx.font = "15px Arial";
+ctx.strokeText("TANZANIA",405,140);
+ctx.font="20px";
+ctx.strokeText(i4,415,160);
+
+
+
+
+
+
+}
+
+</script>
+</body>
+</html>
